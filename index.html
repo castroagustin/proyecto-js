@@ -7,56 +7,82 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="./css/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/106966e592.js"
-      crossorigin="anonymous"
-    ></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/106966e592.js" crossorigin="anonymous"></script>
     <title>Ventas</title>
   </head>
   <body>
+    <div class="modal modal--message hidden">
+      <div class="modal__header">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Seguro que quiere borrar todos los productos?</p>
+      </div>
+      <div class="modal__buttons">
+        <button class="modal__primaryBtn modal__submitMessage">Aceptar</button>
+        <span class="modal__secondaryBtn modal__cancelMessage">Cancelar</span>
+      </div>
+    </div>
+    <div class="modal modal--input hidden">
+      <i class="modal__close fas fa-times"></i>
+      <h2 class="modal__title">Ingresar un producto:</h2>
+      <form>
+        <label for="prodName">Producto</label>
+        <input type="text" name="prodName" class="producto__nombre" />
+        <label for="prodCateg">Categoria</label>
+        <input type="text" name="prodCateg" class="producto__categoria" />
+        <label for="prodPrecio">Precio</label>
+        <input type="number" name="prodPrecio" class="producto__precio" />
+        <label for="prodStock">Stock</label>
+        <input type="number" name="prodStock" class="producto__stock" />
+        <button class="modal__primaryBtn modal__submitInput">Agregar Producto</button>
+        <span class="modal__secondaryBtn modal__clear">Limpiar</span>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
     <header class="header">
-      <h1 class="header__title">Ventas mensuales</h1>
       <div class="header__user"></div>
     </header>
     <nav class="nav">
+      <div class="nav__titleContainer">
+        <p class="nav__title">Menú</p>
+      </div>
       <ul>
         <li>
-          <a href="#" class="nav__item"
-            ><i class="fas fa-th-large"></i>
-            <p>Inicio</p></a
-          >
+          <a href="#" class="nav__item nav__item--active"><i class="fas fa-th-large"></i><p class="nav__tag">Inicio</p></a>
         </li>
         <li>
-          <a href="#" class="nav__item"
-            ><i class="fas fa-tag"></i>
-            <p>Ventas</p></a
-          >
+          <a href="#" class="nav__item"><i class="fas fa-tag"></i><p class="nav__tag">Ventas</p></a>
         </li>
         <li>
-          <a href="#" class="nav__item"
-            ><i class="fas fa-truck"></i>
-            <p>Envíos</p></a
-          >
+          <a href="#" class="nav__item"><i class="fas fa-truck"></i><p class="nav__tag">Envíos</p></a>
         </li>
         <li>
-          <a href="#" class="nav__item"
-            ><i class="fas fa-archive"></i>
-            <p>Productos</p></a
-          >
+          <a href="#" class="nav__item"><i class="fas fa-archive"></i><p class="nav__tag">Productos</p></a>
         </li>
         <li>
-          <a href="#" class="nav__item"
-            ><i class="fas fa-cog"></i>
-            <p>Configuración</p></a
-          >
+          <a href="#" class="nav__item"><i class="fas fa-cog"></i><p class="nav__tag">Configuración</p></a>
         </li>
       </ul>
     </nav>
+    <main class="main">
+      <div class="products__container" id="productsContainer">
+        <div class="products__header">
+          <div class="products__top">
+            <p>Productos:</p>
+            <div>
+              <i class="products__agregarBtn products__iconBtn fas fa-plus"></i>
+              <i class="products__borrarBtn products__iconBtn fas fa-trash"></i>
+            </div>
+          </div>
+          <div class="list__row list__row--title">
+            <span class="row__text--title">Producto</span>
+            <span class="row__text--title row__text--center">Precio</span>
+            <span class="row__text--title">Stock</span>
+          </div>
+        </div>
+        <div class="products__list"></div>
+      </div>
+    </main>
     <script src="./js/main.js"></script>
   </body>
 </html>
