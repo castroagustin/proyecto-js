@@ -63,11 +63,16 @@ section{
     &__icons{
         font-size: 1.2rem;
         user-select: none;
+        display: flex;
+        align-items: center;
         i{
             margin-left: .9rem;
             cursor: pointer;
             position: relative;
         }
+    }
+    &__cartContainer{
+        position: relative;
     }
     &__cartNumber{
         position: absolute;
@@ -91,11 +96,44 @@ section{
     &__cartElContainer{
         position: absolute;
         font-family: 'Poppins', sans-serif;
-        font-weight: 400;
-        background-color: yellowgreen;
-        padding: .5rem;
-        bottom: -2.5rem;
-        left: calc(-200% - .5rem);
+        font-weight: 300;
+        background-color: #fff;
+        padding: 1rem;
+        top: calc(100% + .5rem);
+        right: 0;
+        box-shadow: 0px 4px 15px -3px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        transition: .2s all ease;
+        table{
+            margin-top: .5rem;
+            width: 350px;
+            border-collapse: collapse;
+            th, td{
+                font-size: 1rem;
+                font-weight: 400;
+                text-align: start;
+                padding-top: .5rem;
+            }
+            th{
+                font-weight: 600;
+            }
+            td{
+                border-top: 1px solid #2e2e2e49;
+            }
+            .table__alignCenter{
+                text-align: center;
+                font-weight: 600;
+                span{
+                    font-size: 1.2rem;
+                    margin: .5rem;
+                    font-weight: 300;
+                    cursor: pointer;
+                }
+            }
+            .table__prodImg{
+                max-width: 50px;
+            }
+        }
     }
 }
 .header{

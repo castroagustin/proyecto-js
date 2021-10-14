@@ -12,21 +12,28 @@
     <title>Guitars.com</title>
 </head>
 <body>
-    <div class="message ">
-        <i class="message__icon fas fa-check"></i>
-        <span class="message__text">Producto agregado correctamente</span>
-    </div>
     <nav class="nav">
         <a href="#" class="nav__title">Guitars.com</a>
         <div class="nav__icons">
-            <i class="fas fa-shopping-cart">
+            <div class="nav__cartContainer">
+                <i class="fas fa-shopping-cart nav__cartIcon"></i>
                 <span class="nav__cartNumber hidden">1</span>
-                <div class="nav__cartElContainer">
+                <div class="nav__cartElContainer hidden">
                     <p>Carrito:</p>
+                    <table class="cart__table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Producto</th>
+                                <th class="table__alignCenter">Cantidad</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="cart__tableBody"></tbody>
+                    </table>
                 </div>
-            </i>
+            </div>
             <i class="fas fa-heart"></i>
-            <i class="fas fa-user-circle"></i>
         </div>
     </nav>
     <header class="header">

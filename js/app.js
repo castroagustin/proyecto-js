@@ -5,11 +5,15 @@ fetch("js/data.json")
         saveProducts(products);
 
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const cartBtn = document.querySelector('.nav__cartIcon');
+        const cartElementsContainer = document.querySelector('.nav__cartElContainer');
+        const cartElementsTable = document.querySelector('.cart__table');
+        const cartTableBody = document.querySelector('.cart__tableBody');
         const cartNumber = document.querySelector('.nav__cartNumber');
 
         const productsOffersContainer = $('.sectionOffers__container');
         const productsNewArrivalContainer = $('.sectionNewArrival__container');
-
 
         const seeMoreOffersBtn = document.querySelector('#seeMoreOffers');
         const seeMoreNewSeasonBtn = document.querySelector('#seeMoreNewSeason');
@@ -36,7 +40,7 @@ fetch("js/data.json")
 
         const productCreator = prod => {
             return `
-        <div class="sectionSales__sale" id="${prod.id}">
+        <div class="sectionSales__sale" data-key="${prod.id}">
             <div class="sale__imgContainer">
                 <img src="${prod.frontImg}" class="sale__img">
             </div>
@@ -66,25 +70,65 @@ fetch("js/data.json")
 
         addCart.forEach(btn => {
             btn.addEventListener('click', () => {
-                /* message.classList.remove('hidden');
-                setTimeout(() => {
-                    message.classList.add('hidden')
-                }, 1500); */
-
-                // Animaciones concatenadas JQUERY
-                $('.message').animate({ top: '2rem', opacity: 1 }, 100).delay(1500).animate({ top: '-10%', opacity: 0 }, 100)
-
-                const prodId = btn.parentNode.parentNode.id;
+                const prodId = Number(btn.parentNode.parentNode.dataset.key);
                 addToCart(prodId);
+                if (cartElementsContainer.classList.contains('hidden')) {
+                    cartElementsContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        cartElementsContainer.classList.add('hidden')
+                    }, 2000);
+                }
             })
         })
 
         const addToCart = (prodId) => {
-            cart.push(products.find(e => e.id == prodId));
-            console.log(cart, cart.length);
-            if (cart.length >= 1) cartNumber.classList.remove('hidden');
-            cartNumber.innerHTML = cart.length;
+            const selectedProd = products.find(e => e.id === prodId);
+            const cartProd = cart.find(e => e.id === prodId);
+            if (cart.some(e => e.id === prodId)) {
+                cartProd.quantity++;
+            } else {
+                selectedProd.quantity = 1;
+                cart.push(selectedProd);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showCart();
         }
+
+        const showCart = () => {
+            let elem = '';
+            let cantidad = 0;
+            cart.forEach(prod => {
+                cantidad += prod.quantity;
+                elem += `
+                <tr data-key="${prod.id}">
+                    <td><img class="table__prodImg" src="${prod.frontImg}" alt=""></td>
+                    <td>${prod.name}</td>
+                    <td class="table__alignCenter"><span class="table__sumar">+</span> ${prod.quantity} <span class="restar">-</span></td>
+                    <td><i class="table__delete fas fa-trash"></i></td>
+                </tr>`
+            })
+            cartTableBody.innerHTML = elem;
+            if (cart.length >= 1) cartNumber.classList.remove('hidden');
+            cartNumber.innerHTML = cantidad;
+        }
+
+        if (cart) showCart();
+
+        cartBtn.onclick = () => {
+            cartElementsContainer.classList.toggle('hidden');
+        }
+
+        const cartSumar = [...document.querySelectorAll('.table__sumar')];
+        const cartRestar = [...document.querySelectorAll('.table__restar')];
+        cartSumar.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selectedId = Number(btn.parentNode.parentNode.dataset.key)
+                const selectedProd = cart.find(e => e.id === selectedId);
+                selectedProd.quantity++;
+                showCart();
+            })
+        })
+
     })
 
 
