@@ -1,0 +1,74 @@
+@media (min-width: 768px){
+    .nav{
+        padding: 1rem 7%;
+    }
+    .header{
+        &__categories{
+            padding: 0 7%;
+            grid-template-columns: 50% repeat(2, auto);
+            grid-template-rows: repeat(2, 180px);
+            grid-template-areas: 'slider electric acoustic'
+                                 'slider discount discount';
+        }
+    }
+    .sectionSales{
+        &__title{
+            margin-left: 7%;
+        }
+        &__container{
+            padding: 0 6%;
+        }
+        &__sale{
+            width: 23%;
+            &:hover{
+                transform: translateY(-5px);
+            }
+            &:hover .sale__addCart{
+                color: $primary-color;
+            }
+        }
+    }    
+}
+  
+@media (min-width: 1281px){
+    .nav{
+        padding: 1rem 10%;
+    }
+    .header{
+        &__categories{
+            padding: 0 10%;
+            grid-template-rows: repeat(2, 220px);
+        }
+    }
+    .sectionSales{
+        &__title{
+            margin-left: 10%;
+        }
+        &__container{
+            padding: 0 9%;
+        }
+    }
+}
+
+@media (min-width: 1400px){
+    html{
+        font-size: 18px;
+    }
+    .nav{
+        padding: 1rem 15%;
+    }
+    .header{
+        &__categories{
+            padding: 0 15%;
+            grid-template-rows: repeat(2, 240px);
+        }
+    }
+    .sectionSales{
+        &__title{
+            margin-left: 15%;
+        }
+        &__container{
+            padding: 0 14%;
+        }
+    }
+}

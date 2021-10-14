@@ -1,0 +1,146 @@
+[
+    {
+        "name": "Fender Brent Mason",
+        "type": "electric",
+        "price": 470000,
+        "frontImg": "/assets/prods/fender-brent-mason.jpg",
+        "backImg": "/assets/prods/fender-brent-mason_back.jpg",
+        "stock": 12,
+        "id": 1,
+        "discount": 10000,
+        "newArrival": true
+    },
+    {
+        "name": "Fender CC 60S",
+        "type": "acoustic",
+        "price": 55000,
+        "frontImg": "/assets/prods/fender-cc60s.jpg",
+        "backImg": "/assets/prods/fender-cc60s_back.jpg",
+        "stock": 4,
+        "id": 2,
+        "discount": 5000
+    },
+    {
+        "name": "Fender J Mascis",
+        "type": "electric",
+        "price": 240000,
+        "frontImg": "/assets/prods/fender-j-mascis.jpg",
+        "backImg": "/assets/prods/fender-j-mascis_back.jpg",
+        "stock": 5,
+        "id": 3,
+        "newArrival": true
+    },
+    {
+        "name": "Fender Stratocaster",
+        "type": "electric",
+        "price": 145000,
+        "frontImg": "/assets/prods/fender-stratocaster.jpg",
+        "backImg": "/assets/prods/fender-stratocaster_back.jpg",
+        "stock": 20,
+        "id": 4,
+        "discount": 15000
+    },
+    {
+        "name": "Fender Stratocaster Blue LIMITED EDITION",
+        "type": "electric",
+        "price": 160000,
+        "frontImg": "/assets/prods/fender-stratocaster-blue-LE.jpg",
+        "backImg": "/assets/prods/fender-stratocaster-blue-LE_back.jpg",
+        "stock": 3,
+        "id": 5,
+        "discount": 15000
+    },
+    {
+        "name": "Fender Telecaster",
+        "type": "electric",
+        "price": 145000,
+        "frontImg": "/assets/prods/fender-telecaster.jpg",
+        "backImg": "/assets/prods/fender-telecaster_back.jpg",
+        "stock": 15,
+        "id": 6
+    },
+    {
+        "name": "Gibson ES 335",
+        "type": "electric",
+        "price": 500000,
+        "frontImg": "/assets/prods/gibson-es-335.jpg",
+        "backImg": "/assets/prods/gibson-es-335_back.jpg",
+        "stock": 5,
+        "id": 7,
+        "newArrival": true
+    },
+    {
+        "name": "Gibson ES 335",
+        "type": "acoustic",
+        "price": 360000,
+        "frontImg": "/assets/prods/gibson-j-45.jpg",
+        "backImg": "/assets/prods/gibson-j-45_back.jpg",
+        "stock": 7,
+        "id": 8
+    },
+    {
+        "name": "Gibson Les Paul",
+        "type": "electric",
+        "price": 480000,
+        "frontImg": "/assets/prods/gibson-les-paul.jpg",
+        "backImg": "/assets/prods/gibson-les-paul_back.jpg",
+        "stock": 2,
+        "id": 9,
+        "newArrival": true
+    },
+    {
+        "name": "Gibson SG",
+        "type": "electric",
+        "price": 310000,
+        "frontImg": "/assets/prods/gibson-sg.jpg",
+        "backImg": "/assets/prods/gibson-sg_back.jpg",
+        "stock": 7,
+        "id": 10
+    },
+    {
+        "name": "Taylor 210CE",
+        "type": "acoustic",
+        "price": 180000,
+        "frontImg": "/assets/prods/taylor-210ce.jpg",
+        "backImg": "/assets/prods/taylor-210ce_back.jpg",
+        "stock": 9,
+        "id": 11
+    },
+    {
+        "name": "Taylor 214CE-K",
+        "type": "acoustic",
+        "price": 195000,
+        "frontImg": "/assets/prods/taylor-214ce-K.jpg",
+        "backImg": "/assets/prods/taylor-214ce-K_back.jpg",
+        "stock": 6,
+        "id": 12
+    },
+    {
+        "name": "Yamaha CG102",
+        "type": "classical",
+        "price": 30000,
+        "frontImg": "/assets/prods/yamaha-cg102.jpg",
+        "backImg": "/assets/prods/yamaha-cg102_back.jpg",
+        "stock": 30,
+        "id": 13,
+        "newArrival": true
+    },
+    {
+        "name": "Yamaha F335",
+        "type": "acoustic",
+        "price": 20000,
+        "frontImg": "/assets/prods/yamaha-f335.jpg",
+        "backImg": "/assets/prods/yamaha-f335_back.jpg",
+        "stock": 25,
+        "id": 14
+    },
+    {
+        "name": "Yamaha FS800",
+        "type": "acoustic",
+        "price": 35000,
+        "frontImg": "/assets/prods/yamaha-fs800.jpg",
+        "backImg": "/assets/prods/yamaha-fs800_back.jpg",
+        "stock": 17,
+        "id": 15
+    }
+]
