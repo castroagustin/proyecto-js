@@ -1,4 +1,4 @@
-fetch("/js/data.json")
+fetch("js/data.json")
     .then(response => response.json())
     .then(products => {
         const saveProducts = prods => localStorage.setItem('products', JSON.stringify(prods));

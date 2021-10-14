@@ -12,7 +12,7 @@ const productCreator = prod => {
     return `
         <div class="sectionSales__sale" id="${prod.id}">
             <div class="sale__imgContainer">
-                <img src=".${prod.frontImg}" class="sale__img">
+                <img src="../${prod.frontImg}" class="sale__img">
             </div>
             <div class="sale__text">
                 <p class="sale__title">${prod.name}</p>
