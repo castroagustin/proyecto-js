@@ -111,7 +111,7 @@ section {
 
 .header__categories .header__slider {
   grid-area: slider;
-  background-image: url(/assets/header-slider.jpg);
+  background-image: url(../assets/header-slider.jpg);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -142,17 +142,17 @@ section {
 
 .header__categories .header__electric {
   grid-area: electric;
-  background-image: url(/assets/header-electric.jpg);
+  background-image: url(../assets/header-electric.jpg);
 }
 
 .header__categories .header__acoustic {
   grid-area: acoustic;
-  background-image: url(/assets/header-acoustic.jpg);
+  background-image: url(../assets/header-acoustic.jpg);
 }
 
 .header__categories .header__discount {
   grid-area: discount;
-  background-image: url(/assets/header-discount.jpg);
+  background-image: url(../assets/header-discount.jpg);
 }
 
 .header__categories-text {
