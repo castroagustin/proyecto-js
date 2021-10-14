@@ -5,6 +5,7 @@ fetch("js/data.json")
         saveProducts(products);
 
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartNumber = document.querySelector('.nav__cartNumber');
 
         const productsOffersContainer = $('.sectionOffers__container');
         const productsNewArrivalContainer = $('.sectionNewArrival__container');
@@ -25,7 +26,6 @@ fetch("js/data.json")
                 this.newSeason = obj.newSeason;
             }
         }
-
 
         const productsOffer = products.filter(e => e.discount);
         const productsOfferSorted = productsOffer.sort((a, b) => b.discount - a.discount);
@@ -81,7 +81,9 @@ fetch("js/data.json")
 
         const addToCart = (prodId) => {
             cart.push(products.find(e => e.id == prodId));
-            console.log(cart);
+            console.log(cart, cart.length);
+            if (cart.length >= 1) cartNumber.classList.remove('hidden');
+            cartNumber.innerHTML = cart.length;
         }
     })
 
