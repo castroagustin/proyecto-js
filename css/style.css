@@ -136,13 +136,25 @@ section {
 .nav__cartElContainer table .table__alignCenter {
   text-align: center;
   font-weight: 600;
+  min-width: 100px;
+  position: relative;
 }
 
-.nav__cartElContainer table .table__alignCenter span {
+.nav__cartElContainer table .table__alignCenter .table__sumar, .nav__cartElContainer table .table__alignCenter .table__restar {
   font-size: 1.2rem;
   margin: .5rem;
   font-weight: 300;
   cursor: pointer;
+  position: absolute;
+  top: 25%;
+}
+
+.nav__cartElContainer table .table__alignCenter .table__sumar {
+  left: .8rem;
+}
+
+.nav__cartElContainer table .table__alignCenter .table__restar {
+  right: .8rem;
 }
 
 .nav__cartElContainer table .table__prodImg {

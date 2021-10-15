@@ -4,7 +4,7 @@ fetch("js/data.json")
         const saveProducts = prods => localStorage.setItem('products', JSON.stringify(prods));
         saveProducts(products);
 
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         const cartBtn = document.querySelector('.nav__cartIcon');
         const cartElementsContainer = document.querySelector('.nav__cartElContainer');
@@ -86,12 +86,34 @@ fetch("js/data.json")
             const cartProd = cart.find(e => e.id === prodId);
             if (cart.some(e => e.id === prodId)) {
                 cartProd.quantity++;
+                showLastCart(cartProd);
             } else {
                 selectedProd.quantity = 1;
-                cart.push(selectedProd);
+                showLastCart(selectedProd);
             }
             localStorage.setItem('cart', JSON.stringify(cart));
-            showCart();
+            // showCart();
+        }
+
+        const productCartCreator = prod => {
+            return `
+            <tr id="cartRow-${prod.id}" data-key="${prod.id}">
+                <td><img class="table__prodImg" src="${prod.frontImg}" alt=""></td>
+                <td>${prod.name}</td>
+                <td class="table__alignCenter"><span class="table__sumar">+</span> <span id="cartNumber">${prod.quantity}</span> <span class="table__restar">-</span></td>
+                <td><i class="table__delete fas fa-trash"></i></td>
+            </tr>`
+        }
+
+        const updateBtn = () => {
+            const cartSumarRestarBtn = [...document.querySelectorAll('.table__sumar'), ...document.querySelectorAll('.table__restar')];
+            const cartDeleteBtn = [...document.querySelectorAll('.table__delete')];
+            cartDeleteBtn.forEach(btn => {
+                btn.onclick = () => borrarCarrito(btn);
+            })
+            cartSumarRestarBtn.forEach(btn => {
+                btn.onclick = () => sumarRestarCarrito(btn);
+            })
         }
 
         const showCart = () => {
@@ -99,35 +121,60 @@ fetch("js/data.json")
             let cantidad = 0;
             cart.forEach(prod => {
                 cantidad += prod.quantity;
-                elem += `
-                <tr data-key="${prod.id}">
-                    <td><img class="table__prodImg" src="${prod.frontImg}" alt=""></td>
-                    <td>${prod.name}</td>
-                    <td class="table__alignCenter"><span class="table__sumar">+</span> ${prod.quantity} <span class="restar">-</span></td>
-                    <td><i class="table__delete fas fa-trash"></i></td>
-                </tr>`
+                elem += productCartCreator(prod);
             })
             cartTableBody.innerHTML = elem;
+            updateBtn();
             if (cart.length >= 1) cartNumber.classList.remove('hidden');
             cartNumber.innerHTML = cantidad;
         }
-
         if (cart) showCart();
+
+        const showLastCart = prod => {
+            if (cart.some(e => e.id === prod.id)) {
+                const selectedRow = cartTableBody.querySelector(`#cartRow-${prod.id}`);
+                const selectedNumber = selectedRow.querySelector('#cartNumber');
+                selectedNumber.innerHTML = prod.quantity;
+            } else {
+                cartTableBody.innerHTML += productCartCreator(prod);
+                cart.push(prod);
+            }
+            cartNumber.innerHTML++
+            updateBtn();
+        }
 
         cartBtn.onclick = () => {
             cartElementsContainer.classList.toggle('hidden');
         }
 
-        const cartSumar = [...document.querySelectorAll('.table__sumar')];
-        const cartRestar = [...document.querySelectorAll('.table__restar')];
-        cartSumar.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const selectedId = Number(btn.parentNode.parentNode.dataset.key)
-                const selectedProd = cart.find(e => e.id === selectedId);
-                selectedProd.quantity++;
-                showCart();
-            })
-        })
+        const sumarRestarCarrito = btn => {
+            const selectedId = Number(btn.parentNode.parentNode.dataset.key)
+            const selectedProd = cart.find(e => e.id === selectedId);
+            const selectedRow = cartTableBody.querySelector(`#cartRow-${selectedId}`);
+            const selectedNumber = selectedRow.querySelector('#cartNumber');
+
+            if (btn.innerHTML === '+') {
+                selectedProd.quantity += 1;
+                selectedNumber.innerHTML = Number(selectedNumber.innerHTML) + 1;
+                cartNumber.innerHTML++;
+            } else {
+                selectedProd.quantity -= 1;
+                selectedNumber.innerHTML = Number(selectedNumber.innerHTML) - 1;
+                cartNumber.innerHTML--;
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        const borrarCarrito = btn => {
+            const selectedId = Number(btn.parentNode.parentNode.dataset.key)
+            const selectedProd = cart.find(e => e.id === selectedId);
+            const selectedRow = cartTableBody.querySelector(`#cartRow-${selectedId}`);
+            cartNumber.innerHTML -= selectedProd.quantity;
+            delete selectedProd.quantity;
+            cart = cart.filter(e => e.id !== selectedId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            cartTableBody.removeChild(selectedRow);
+        }
 
     })
 

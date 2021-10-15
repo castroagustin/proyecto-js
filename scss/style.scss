@@ -123,11 +123,21 @@ section{
             .table__alignCenter{
                 text-align: center;
                 font-weight: 600;
-                span{
+                min-width: 100px;
+                position: relative;
+                .table__sumar, .table__restar{
                     font-size: 1.2rem;
                     margin: .5rem;
                     font-weight: 300;
                     cursor: pointer;
+                    position: absolute;
+                    top: 25%;
+                }
+                .table__sumar{
+                    left: .8rem;
+                }
+                .table__restar{
+                    right: .8rem;
                 }
             }
             .table__prodImg{
