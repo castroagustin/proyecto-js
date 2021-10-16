@@ -27,7 +27,12 @@
                 color: $primary-color;
             }
         }
-    }    
+    }
+    .footer{
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
 }
   
 @media (min-width: 1281px){
@@ -46,6 +51,12 @@
         }
         &__container{
             padding: 0 9%;
+        }
+    }
+    .footer__socialContainer{
+        a{
+            width: 40px;
+            height: 40px;
         }
     }
 }

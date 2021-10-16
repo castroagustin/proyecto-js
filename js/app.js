@@ -8,9 +8,11 @@ fetch("js/data.json")
 
         const cartBtn = document.querySelector('.nav__cartIcon');
         const cartElementsContainer = document.querySelector('.nav__cartElContainer');
-        const cartElementsTable = document.querySelector('.cart__table');
-        const cartTableBody = document.querySelector('.cart__tableBody');
+        const cartContainer = document.querySelector('.cart__container');
+        const cartEmptyMsg = document.querySelector('.cart__emptyMsg');
         const cartNumber = document.querySelector('.nav__cartNumber');
+        const cartTotal = document.querySelector('.cart__total');
+        const cartTotalNumber = document.querySelector('.cart__totalNumber');
 
         const productsOffersContainer = $('.sectionOffers__container');
         const productsNewArrivalContainer = $('.sectionNewArrival__container');
@@ -72,10 +74,10 @@ fetch("js/data.json")
             btn.addEventListener('click', () => {
                 const prodId = Number(btn.parentNode.parentNode.dataset.key);
                 addToCart(prodId);
-                if (cartElementsContainer.classList.contains('hidden')) {
-                    cartElementsContainer.classList.remove('hidden');
+                if (cartElementsContainer.classList.contains('d-none')) {
+                    cartElementsContainer.classList.remove('d-none');
                     setTimeout(() => {
-                        cartElementsContainer.classList.add('hidden')
+                        cartElementsContainer.classList.add('d-none')
                     }, 2000);
                 }
             })
@@ -91,23 +93,33 @@ fetch("js/data.json")
                 selectedProd.quantity = 1;
                 showLastCart(selectedProd);
             }
+            if (cart.length >= 1) cartNumber.classList.remove('hidden');
             localStorage.setItem('cart', JSON.stringify(cart));
-            // showCart();
+            updateCartStates();
         }
 
         const productCartCreator = prod => {
             return `
-            <tr id="cartRow-${prod.id}" data-key="${prod.id}">
-                <td><img class="table__prodImg" src="${prod.frontImg}" alt=""></td>
-                <td>${prod.name}</td>
-                <td class="table__alignCenter"><span class="table__sumar">+</span> <span id="cartNumber">${prod.quantity}</span> <span class="table__restar">-</span></td>
-                <td><i class="table__delete fas fa-trash"></i></td>
-            </tr>`
+            <div class="cart__row" id="cartRow-${prod.id}" data-key=${prod.id}>
+                <img class="cart__prodImg" src="${prod.frontImg}"></img>
+                <div class="cart__prodText">
+                    <div>
+                        <p class="cart__prodName">${prod.name}</p>
+                        <span class="cart__prodPrice">$${numberFormat.format(prod.price * prod.quantity)}</span>
+                    </div>
+                    <div class="cart__cantidadContainer">
+                        <i class="cart__sumar fas fa-plus"></i>
+                        <span class="cart__cantidad" id="cartNumber">${prod.quantity}</span>
+                        <i class="cart__restar fas fa-minus"></i>
+                   </div>
+                </div>
+                <i class="cart__delete fas fa-trash"></i>
+            </div>`
         }
 
         const updateBtn = () => {
-            const cartSumarRestarBtn = [...document.querySelectorAll('.table__sumar'), ...document.querySelectorAll('.table__restar')];
-            const cartDeleteBtn = [...document.querySelectorAll('.table__delete')];
+            const cartSumarRestarBtn = [...document.querySelectorAll('.cart__sumar'), ...document.querySelectorAll('.cart__restar')];
+            const cartDeleteBtn = [...document.querySelectorAll('.cart__delete')];
             cartDeleteBtn.forEach(btn => {
                 btn.onclick = () => borrarCarrito(btn);
             })
@@ -119,11 +131,14 @@ fetch("js/data.json")
         const showCart = () => {
             let elem = '';
             let cantidad = 0;
+            let totalPrice = 0;
             cart.forEach(prod => {
                 cantidad += prod.quantity;
+                totalPrice += prod.price * prod.quantity;
                 elem += productCartCreator(prod);
             })
-            cartTableBody.innerHTML = elem;
+            cartTotalNumber.innerHTML = `$${numberFormat.format(totalPrice)}`;
+            cartContainer.innerHTML = elem;
             updateBtn();
             if (cart.length >= 1) cartNumber.classList.remove('hidden');
             cartNumber.innerHTML = cantidad;
@@ -132,48 +147,77 @@ fetch("js/data.json")
 
         const showLastCart = prod => {
             if (cart.some(e => e.id === prod.id)) {
-                const selectedRow = cartTableBody.querySelector(`#cartRow-${prod.id}`);
+                const selectedRow = cartContainer.querySelector(`#cartRow-${prod.id}`);
                 const selectedNumber = selectedRow.querySelector('#cartNumber');
+                const selectedPrice = selectedRow.querySelector('.cart__prodPrice');
                 selectedNumber.innerHTML = prod.quantity;
+                selectedPrice.innerHTML = '$' + numberFormat.format(prod.price * prod.quantity);
             } else {
-                cartTableBody.innerHTML += productCartCreator(prod);
+                cartContainer.innerHTML += productCartCreator(prod);
                 cart.push(prod);
             }
+            cartTotalNumber.innerHTML = '$' + numberFormat.format(Number(cartTotalNumber.innerHTML.substring(1).replace(/\./g, '')) + prod.price);
             cartNumber.innerHTML++
             updateBtn();
         }
 
         cartBtn.onclick = () => {
-            cartElementsContainer.classList.toggle('hidden');
+            cartElementsContainer.classList.toggle('d-none');
         }
 
-        const sumarRestarCarrito = btn => {
-            const selectedId = Number(btn.parentNode.parentNode.dataset.key)
-            const selectedProd = cart.find(e => e.id === selectedId);
-            const selectedRow = cartTableBody.querySelector(`#cartRow-${selectedId}`);
-            const selectedNumber = selectedRow.querySelector('#cartNumber');
+        const updateCartStates = () => {
+            if (cart.length <= 0) {
+                cartNumber.classList.add('hidden');
+                cartEmptyMsg.classList.remove('d-none');
+                cartTotal.classList.add('d-none');
+            } else {
+                cartNumber.classList.remove('hidden');
+                cartEmptyMsg.classList.add('d-none');
+                cartTotal.classList.remove('d-none');
+            }
+        }
 
-            if (btn.innerHTML === '+') {
+        updateCartStates();
+
+        const sumarRestarCarrito = btn => {
+            const selectedId = Number(btn.parentNode.parentNode.parentNode.dataset.key)
+            const selectedProd = cart.find(e => e.id === selectedId);
+            const selectedRow = cartContainer.querySelector(`#cartRow-${selectedId}`);
+            const selectedNumber = selectedRow.querySelector('#cartNumber');
+            const selectedPrice = selectedRow.querySelector('.cart__prodPrice');
+
+            if (btn.classList.contains('cart__sumar')) {
                 selectedProd.quantity += 1;
                 selectedNumber.innerHTML = Number(selectedNumber.innerHTML) + 1;
                 cartNumber.innerHTML++;
+                cartTotalNumber.innerHTML = '$' + numberFormat.format(Number(cartTotalNumber.innerHTML.substring(1).replace(/\./g, '')) + selectedProd.price);
             } else {
                 selectedProd.quantity -= 1;
+                cartTotalNumber.innerHTML = '$' + numberFormat.format(Number(cartTotalNumber.innerHTML.substring(1).replace(/\./g, '')) - selectedProd.price);
+                if (selectedProd.quantity === 0) {
+                    delete selectedProd.quantity;
+                    cart = cart.filter(e => e.id !== selectedId);
+                    cartContainer.removeChild(selectedRow);
+                    updateCartStates();
+                }
                 selectedNumber.innerHTML = Number(selectedNumber.innerHTML) - 1;
                 cartNumber.innerHTML--;
             }
+            selectedPrice.innerHTML = '$' + numberFormat.format(selectedProd.price * selectedProd.quantity);
             localStorage.setItem('cart', JSON.stringify(cart));
         }
 
         const borrarCarrito = btn => {
-            const selectedId = Number(btn.parentNode.parentNode.dataset.key)
+            const selectedId = Number(btn.parentNode.dataset.key)
             const selectedProd = cart.find(e => e.id === selectedId);
-            const selectedRow = cartTableBody.querySelector(`#cartRow-${selectedId}`);
+            const selectedRow = cartContainer.querySelector(`#cartRow-${selectedId}`);
             cartNumber.innerHTML -= selectedProd.quantity;
+            cartTotalNumber.innerHTML = '$' + numberFormat.format(Number(cartTotalNumber.innerHTML.substring(1).replace(/\./g, '')) - selectedProd.price * selectedProd.quantity);
             delete selectedProd.quantity;
             cart = cart.filter(e => e.id !== selectedId);
             localStorage.setItem('cart', JSON.stringify(cart));
-            cartTableBody.removeChild(selectedRow);
+            cartContainer.removeChild(selectedRow);
+            updateCartStates();
         }
 
     })
