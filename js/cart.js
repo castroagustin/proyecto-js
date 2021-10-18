@@ -1,5 +1,5 @@
 'use strict';
-let products = JSON.parse(localStorage.getItem('products')) || [];
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 const cartBtn = document.querySelector('.nav__cartIcon');
@@ -13,6 +13,7 @@ const cartTotalNumber = document.querySelector('.cart__totalNumber');
 const numberFormat = new Intl.NumberFormat('es-ES');
 
 const cargarCarrito = (imgSrc) => {
+    let products = JSON.parse(localStorage.getItem('products')) || [];
     const addCart = [...document.querySelectorAll('.sale__addCart')];
 
     addCart.forEach(btn => {
@@ -30,6 +31,7 @@ const cargarCarrito = (imgSrc) => {
 
     const addToCart = (prodId) => {
         const selectedProd = products.find(e => e.id === prodId);
+        console.log(selectedProd);
         const cartProd = cart.find(e => e.id === prodId);
         if (cart.some(e => e.id === prodId)) {
             cartProd.quantity++;
