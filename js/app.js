@@ -39,7 +39,7 @@ fetch("js/data.json")
             </div>
             <div class="sale__text">
                 <p class="sale__title">${prod.name}</p>
-                <p class="sale__price">${prod.discount ? `<span>$${prod.price + prod.discount}</span> ` : ''}$${numberFormat.format(prod.price)}</p>
+                <p class="sale__price">${prod.discount ? `<span>$${numberFormat.format(prod.price + prod.discount)}</span> ` : ''}$${numberFormat.format(prod.price)}</p>
                 <div class="sale__addCart">Agregar al carrito</div>
             </div>
         </div>

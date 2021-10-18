@@ -47,14 +47,14 @@ section {
   justify-content: space-between;
   padding: 1rem 3%;
   align-items: center;
-  color: #2e2e2e;
+  color: #121212;
   background-color: #F9F9F9;
   box-shadow: 0px 9px 34px -15px rgba(0, 0, 0, 0.25);
 }
 
 .nav a {
   text-decoration: none;
-  color: #2e2e2e;
+  color: #121212;
 }
 
 .nav__title {
@@ -113,7 +113,7 @@ section {
   padding: 1rem;
   top: calc(100% + .5rem);
   width: 90vw;
-  max-width: 350px;
+  max-width: 400px;
   right: calc(-100% - 1rem);
   box-shadow: 0px 4px 15px -3px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -342,7 +342,7 @@ section {
   font-size: 1.4rem;
   font-weight: 600;
   margin-left: 3%;
-  color: #2e2e2e;
+  color: #121212;
   position: relative;
 }
 
@@ -368,7 +368,7 @@ section {
   min-height: 20px;
   margin: 1%;
   margin-bottom: 2rem;
-  color: #2e2e2e;
+  color: #121212;
   box-shadow: 0px 0px 61px -10px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   cursor: pointer;
@@ -409,7 +409,7 @@ section {
   text-decoration-line: line-through;
   font-size: .9rem;
   font-weight: 400;
-  color: #2e2e2e;
+  color: #121212;
 }
 
 .sectionSales__sale .sale__text {
@@ -429,7 +429,7 @@ section {
   left: 50%;
   transform: translateX(-50%);
   margin-top: 1rem;
-  color: #2e2e2e;
+  color: #121212;
   font-size: 1.3rem;
   font-weight: 300;
   cursor: pointer;
@@ -450,8 +450,32 @@ section {
   margin-top: 1rem;
 }
 
+.results__title {
+  margin-bottom: .5rem;
+}
+
+.results__text--bold {
+  font-weight: 600;
+}
+
+.results__select {
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #99999960;
+  padding-bottom: .3rem;
+  outline: none;
+}
+
+.results__select option:hover {
+  color: #9F4E5B;
+}
+
+.results__categories {
+  margin-left: 1rem;
+}
+
 .footer {
-  background-color: #2e1c1e;
+  background-color: #fff;
   position: relative;
   padding: 2rem 3%;
   padding-bottom: 4rem;
@@ -460,19 +484,21 @@ section {
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 17px 29px 14px #0000000f;
   align-items: center;
 }
 
 .footer__logo {
   font-weight: 500;
   text-decoration: none;
-  color: #fff;
+  color: #121212;
   margin-bottom: 1rem;
 }
 
 .footer__social {
   display: flex;
   flex-direction: column;
+  color: #121212;
 }
 
 .footer__socialContainer {
@@ -493,6 +519,7 @@ section {
   text-decoration: none;
   border-radius: 50%;
   background-color: #fff;
+  box-shadow: 0px 4px 14px -2px #00000026;
   transition: all .1s ease;
 }
 
@@ -508,7 +535,7 @@ section {
   width: 100%;
   text-align: center;
   font-size: 1rem;
-  background-color: #201315;
+  background-color: #723841;
   padding: .3rem;
 }
 
@@ -531,6 +558,10 @@ section {
     grid-template-columns: 50% repeat(2, auto);
     grid-template-rows: repeat(2, 180px);
     grid-template-areas: 'slider electric acoustic' 'slider discount discount';
+  }
+  .results__filters {
+    padding: 0 7%;
+    padding-top: 2rem;
   }
   .sectionSales__title {
     margin-left: 7%;
@@ -562,6 +593,10 @@ section {
     padding: 0 10%;
     grid-template-rows: repeat(2, 220px);
   }
+  .results__filters {
+    padding: 0 10%;
+    padding-top: 2rem;
+  }
   .sectionSales__title {
     margin-left: 10%;
   }
@@ -584,6 +619,10 @@ section {
   .header__categories {
     padding: 0 15%;
     grid-template-rows: repeat(2, 240px);
+  }
+  .results__filters {
+    padding: 0 15%;
+    padding-top: 2rem;
   }
   .sectionSales__title {
     margin-left: 15%;

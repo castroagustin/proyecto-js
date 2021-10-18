@@ -11,6 +11,12 @@
                                  'slider discount discount';
         }
     }
+    .results{
+        &__filters{
+            padding: 0 7%;
+            padding-top: 2rem;
+        }
+    }
     .sectionSales{
         &__title{
             margin-left: 7%;
@@ -45,6 +51,12 @@
             grid-template-rows: repeat(2, 220px);
         }
     }
+    .results{
+        &__filters{
+            padding: 0 10%;
+            padding-top: 2rem;
+        }
+    }
     .sectionSales{
         &__title{
             margin-left: 10%;
@@ -72,6 +84,12 @@
         &__categories{
             padding: 0 15%;
             grid-template-rows: repeat(2, 240px);
+        }
+    }
+    .results{
+        &__filters{
+            padding: 0 15%;
+            padding-top: 2rem;
         }
     }
     .sectionSales{

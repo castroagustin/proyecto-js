@@ -12,10 +12,6 @@
     <title>Guitars.com</title>
 </head>
 <body>
-    <div class="message ">
-        <i class="message__icon fas fa-check"></i>
-        <span class="message__text">Producto agregado correctamente</span>
-    </div>
     <nav class="nav">
         <a href="../index.html" class="nav__title">Guitars.com</a>
         <div class="nav__icons">
@@ -40,17 +36,31 @@
     </nav>
     <section class="sectionSales" >
         <h2 class="sectionSales__title results__title"></h2>
-        <!-- <section class="results__filters">
-            <div class="results__sortBtn">
-                <i class="fas fa-sort"></i>
+        <section class="results__filters">
+            <div class="results__container results__sort">
+                <span class="results__text results__text--bold">Ordenar por:</span>
+                <select class="results__select" name="select">
+                    <option value="relevantes" selected>Mas relevantes</option>
+                    <option value="precioMen">Menor precio</option>
+                    <option value="precioMay">Mayor precio</option>
+                </select>
             </div>
-            <div class="results__filterBtn">
-                <i class="fas fa-sliders-h"></i>
-            </div>
-        </section> -->
+        </section>
         <div class="sectionSales__container results__section">
         </div>
     </section>
+    <footer class="footer">
+        <a href="#" class="footer__logo">Guitars.com</a>
+        <div class="footer__social">
+            <p>Nuestras Redes:</p>
+            <div class="footer__socialContainer">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <span class="footer__bottom">©2021 - Todos los derechos reservados</span>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="../js/searchProds.js"></script>
     <script src="../js/cart.js"></script>
