@@ -19,9 +19,23 @@
     <nav class="nav">
         <a href="../index.html" class="nav__title">Guitars.com</a>
         <div class="nav__icons">
-            <i class="fas fa-shopping-cart"></i>
+            <div class="nav__cartContainer">
+                <i class="fas fa-shopping-cart nav__cartIcon"></i>
+                <span class="nav__cartNumber hidden">1</span>
+                <div class="nav__cartElContainer d-none">
+                    <p class="cart__title">Carrito:</p>
+                    <div class="cart__container"></div>
+                    <div class="cart__total d-none">
+                        <div>
+                            <span>Total:</span>
+                            <span class="cart__totalNumber">$0</span>
+                        </div>
+                        <span class="cart__checkout">Pagar</span>
+                    </div>
+                    <div class="cart__emptyMsg d-none">El carrito está vacío...</div>
+                </div>
+            </div>
             <i class="fas fa-heart"></i>
-            <i class="fas fa-user-circle"></i>
         </div>
     </nav>
     <section class="sectionSales" >
@@ -39,5 +53,6 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="../js/searchProds.js"></script>
+    <script src="../js/cart.js"></script>
 </body>
 </html>
