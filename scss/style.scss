@@ -118,10 +118,6 @@ section{
             align-items: center;
             padding-top: 1rem;
             padding-bottom: .5rem;
-            border-top: 1px solid #c7c7c7;
-            &:nth-child(1){
-                border: none;
-            }
         }
         &__prodImg{
             width: 30%;
@@ -172,17 +168,36 @@ section{
         }
         &__delete{
             cursor: pointer;
+            color: #2e2e2e;
         }
         &__total{
-            border-top: 1px solid #999999;
+            border-top: 1px solid #2e2e2e1c;
             padding-top: .5rem;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        &__checkout{
+            background-color: $primary-color;
+            color: #fff;
+            padding: .2rem 2rem;
+            border-radius: 10px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all .2s ease;
+            &:hover{
+                background-color: #69343d;
+            }
         }
         &__totalNumber{
             margin-left: .2rem;
             font-weight: 300;
         }
         &__emptyMsg{
+            opacity: 1;
+            height: auto;
+            transition: all .2s ease;
             color: #868686;
         }
         &__title{
@@ -395,7 +410,7 @@ section{
 }
 
 .footer{
-    background-color: $dark-grey;
+    background-color: #2e1c1e;
     position: relative;
     padding: 2rem 3%;
     padding-bottom: 4rem;
@@ -446,7 +461,7 @@ section{
         width: 100%;
         text-align: center;
         font-size: 1rem;
-        background-color: #131313;
+        background-color: #201315;
         padding: .3rem;
     }
 }
@@ -455,9 +470,8 @@ section{
     opacity: 0;
 }
 .d-none{
-    transition: opacity .2s ease;
-    opacity: 0;
-    height: 0;
+    opacity: 0 !important;
+    height: 0 !important;
     overflow: hidden;
 }
 

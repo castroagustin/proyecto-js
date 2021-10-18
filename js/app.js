@@ -113,7 +113,7 @@ fetch("js/data.json")
                         <i class="cart__restar fas fa-minus"></i>
                    </div>
                 </div>
-                <i class="cart__delete fas fa-trash"></i>
+                <i class="cart__delete fas fa-times"></i>
             </div>`
         }
 
