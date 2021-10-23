@@ -2,9 +2,10 @@
 window.onload = () => {
     const products = JSON.parse(localStorage.getItem('products'));
 
-    const resultsContainer = document.querySelector('.results__section');
-    const resultsTitle = document.querySelector('.results__title');
-    const resultsSelect = document.querySelector('.results__select');
+    // Llamadas con jquery
+    const resultsContainer = $('.results__section')[0];
+    const resultsTitle = $('.results__title')[0];
+    const resultsSelect = $('.results__select')[0];
 
     const filterContainer = document.querySelector('.filter__filtersContainer');
     const filterTextContainer = document.querySelector('.filter__textContainer');

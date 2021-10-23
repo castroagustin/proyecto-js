@@ -3,7 +3,6 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let products;
 
-
 const cartBtn = document.querySelector('.nav__cartIcon');
 const cartElementsContainer = document.querySelector('.nav__cartElContainer');
 const cartMainContainer = document.querySelector('.nav__cartContainer');
@@ -14,11 +13,12 @@ const cartTotal = document.querySelector('.cart__total');
 const cartTotalNumber = document.querySelector('.cart__totalNumber');
 const cartCheckoutBtn = document.querySelector('.cart__checkout');
 
-const messageContainer = document.querySelector('.messageContainer');
-const message = document.querySelector('.message');
-const messageOverlay = document.querySelector('.message__overlay');
-const messagePrice = document.querySelector('#messagePrice');
-const messageButton = document.querySelector('.message__button');
+// Llamadas con jquery
+const messageContainer = $('.messageContainer')[0];
+const message = $('.message')[0];
+const messageOverlay = $('.message__overlay')[0];
+const messagePrice = $('#messagePrice')[0];
+const messageButton = $('.message__button')[0];
 
 const numberFormat = new Intl.NumberFormat('es-ES');
 
