@@ -5,9 +5,12 @@ fetch("js/data.json")
         const saveProducts = prods => localStorage.setItem('products', JSON.stringify(prods));
         saveProducts(products);
 
-        const productsOffersContainer = $('.sectionOffers__container');
-        const productsNewArrivalContainer = $('.sectionNewArrival__container');
+        const productsOffersContainer = document.querySelector('.sectionOffers__container');
+        const productsNewArrivalContainer = document.querySelector('.sectionNewArrival__container');
 
+        const seeMoreElectricBtn = document.querySelector('.header__electric');
+        const seeMoreAcousticBtn = document.querySelector('.header__acoustic');
+        const seeDiscountsBtn = document.querySelector('.header__discount');
         const seeMoreOffersBtn = document.querySelector('#seeMoreOffers');
         const seeMoreNewSeasonBtn = document.querySelector('#seeMoreNewSeason');
 
@@ -48,15 +51,35 @@ fetch("js/data.json")
 
         productsOfferSorted.forEach((prod, i) => {
             if (i < 4) {
-                productsOffersContainer.append(productCreator(prod));
+                productsOffersContainer.innerHTML += productCreator(prod);
             }
         })
 
         productsNewArrival.forEach((prod, i) => {
             if (i < 4) {
-                productsNewArrivalContainer.append(productCreator(prod))
+                productsNewArrivalContainer.innerHTML += productCreator(prod);
             }
         })
+
+        const saveFilters = filter => {
+            localStorage.setItem('filters', JSON.stringify([filter]));
+        }
+
+        seeMoreElectricBtn.onclick = () => {
+            saveFilters('electric');
+        }
+        seeMoreAcousticBtn.onclick = () => {
+            saveFilters('acoustic');
+        }
+        seeDiscountsBtn.onclick = () => {
+            saveFilters('offers');
+        }
+        seeMoreOffersBtn.onclick = () => {
+            saveFilters('offers');
+        }
+        seeMoreNewSeasonBtn.onclick = () => {
+            saveFilters('newArrivals');
+        }
 
         // CARGAR CARRITO (script "cart.js")
         cargarCarrito()

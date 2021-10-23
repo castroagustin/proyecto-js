@@ -12,6 +12,16 @@
     <title>Guitars.com</title>
 </head>
 <body>
+    <div class="messageContainer d-none">
+        <div class="message d-none">
+            <img class="message__img" src="../assets/check.png" alt="">
+            <h2 class="message__text message__text--title">Pago realizado correctamente</h2>
+            <span class="message__text message__text--secondary" id="messagePrice">($000.000)</span>
+            <span class="message__text message__text--secondary">Muchas gracias por su compra</span>
+            <span class="message__button">Aceptar</span>
+        </div>
+        <div class="message__overlay d-none"></div>
+    </div>
     <nav class="nav">
         <a href="../index.html" class="nav__title">Guitars.com</a>
         <div class="nav__icons">
@@ -31,13 +41,12 @@
                     <div class="cart__emptyMsg d-none">El carrito está vacío...</div>
                 </div>
             </div>
-            <i class="fas fa-heart"></i>
         </div>
     </nav>
     <section class="sectionSales" >
         <h2 class="sectionSales__title results__title"></h2>
         <section class="results__filters">
-            <div class="results__container results__sort">
+            <div class="results__sort">
                 <span class="results__text results__text--bold">Ordenar por:</span>
                 <select class="results__select" name="select">
                     <option value="relevantes" selected>Mas relevantes</option>
@@ -45,11 +54,35 @@
                     <option value="precioMay">Mayor precio</option>
                 </select>
             </div>
+            <div class="results__filter">
+                <span class="results__text results__text--bold">Filtrar por:</span>
+                <div class="results__selectFilters">
+                    <div class="filter__textContainer">
+                        <span>Seleccionar</span>
+                        <i class="filter__icon fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter__filtersContainer d-none">
+                        <span class="filter__categoriesTitle">Estado:</span>
+                        <label><input type="radio" name="state" id="filterCheckBox" value="offers">Ofertas</label>
+                        <label><input type="radio" name="state" id="filterCheckBox" value="newArrivals">Recien llegados</label>
+                        <span class="filter__categoriesTitle">Tipo:</span>
+                        <label><input type="radio" name="type" id="filterCheckBox" value="electric">Electricas</label>
+                        <label><input type="radio" name="type" id="filterCheckBox" value="acoustic">Acusticas</label>
+                        <label><input type="radio" name="type" id="filterCheckBox" value="classical">Clasicas</label>
+                        <span class="filter__btn">Filtrar</span>
+                    </div>
+                </div>
+            </div>
+            <div class="results__showFilters d-none">
+                <span class="results__showFiltersText">Filtros:</span>
+                <div class="results__filterTagContainer">
+                </div>
+            </div>
         </section>
         <div class="sectionSales__container results__section">
         </div>
     </section>
-    <footer class="footer">
+    <footer class="footer footer--noMargin">
         <a href="#" class="footer__logo">Guitars.com</a>
         <div class="footer__social">
             <p>Nuestras Redes:</p>

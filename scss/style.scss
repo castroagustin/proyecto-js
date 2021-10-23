@@ -5,12 +5,19 @@
 }
 
 $primary-color: #9F4E5B;
+$primary-dark: #69343d;
+$primary-light: #f2e7e9;
 $dark-grey: #121212;
 $light-grey: #F9F9F9;
 
 body{
     font-family: 'Poppins', sans-serif;
     padding-top: 3rem;
+    background-color: #fdfbfa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 section{
@@ -18,25 +25,71 @@ section{
 }
 
 .message{
-    position: fixed;
-    top: -10%;
-    z-index: 1000;
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    transition: all .5s ease;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0px 4px 48px -16px rgba(0, 0, 0, 0.25);
     width: 90%;
     max-width: 500px;
-    background-color: $primary-color;
-    padding: .5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    transition: all .5s ease;
-    opacity: 0;
-    &__icon{
-        margin-right: 1rem;
+    z-index: 1000;
+    &__img{
+        max-width: 150px;
+        margin-bottom: 2rem;
+    }
+    &__text{
+        font-size: 1.2rem;
+        &--title{
+            color: $dark-grey;
+            font-weight: 600;
+        }
+        &--secondary{
+            color: #474747;
+            font-weight: 400;
+            margin-bottom: .5rem;
+        }
+    }
+    &__button{
+        background-color: $primary-color;
+        color: #fff;
+        padding: .5rem;
+        width: 90%;
+        max-width: 300px;
+        margin-top: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all .2s ease;
+        &:hover{
+            background-color: $primary-dark;
+        }
+    }
+    &Container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100vw;
+        height: 100vh;
+        transition: all .2s ease;
+    }
+    &__overlay{
+        background: #0002;
+        backdrop-filter: blur(2px);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all .2s ease;
     }
 }
 .nav{
@@ -107,12 +160,21 @@ section{
         top: calc(100% + .5rem);
         width: 90vw;
         max-width: 400px;
-        right: calc(-100% - 1rem) ;
+        right: 0;
         box-shadow: 0px 4px 15px -3px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         transition: .2s all ease;
     }
     .cart{
+        &__container{
+            max-height: 400px;
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
         &__row{
             display: flex;
             align-items: center;
@@ -187,7 +249,7 @@ section{
             cursor: pointer;
             transition: all .2s ease;
             &:hover{
-                background-color: #69343d;
+                background-color: $primary-dark;
             }
         }
         &__totalNumber{
@@ -206,10 +268,8 @@ section{
     }
 }
 .header{
-    background-color: $light-grey;
     padding-bottom: 2rem;
     padding-top: 2rem;
-    
     &__textColor{
         color: $primary-color;
         padding: 0 .3rem;
@@ -334,8 +394,10 @@ section{
         margin: 1%;
         margin-bottom: 2rem;
         color: $dark-grey;
-        box-shadow: 0px 0px 61px -10px rgba(0, 0, 0, 0.1);
-        border-radius: 20px;
+        box-shadow: 0px 0px 50px -10px #0000001a;
+        overflow: hidden;
+        background-color: #fff;
+        border-radius: 10px;
         cursor: pointer;
         transition: all .1s ease;
         .sale{
@@ -402,7 +464,10 @@ section{
 .results{
     &__filters{
         display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
         padding: 1rem 3%;
+        padding-bottom: .5rem;
     }
     &__section{
         margin-top: 1rem;
@@ -418,18 +483,127 @@ section{
     &__select{
         font-size: 1rem;
         border: none;
-        border-bottom: 1px solid #99999960;
-        padding-bottom: .3rem;
         outline: none;
+        background-color: #fdfbfa;
+        cursor: pointer;
         option{
-            &:hover{
-                color: $primary-color;
-            }
+            cursor: pointer;
         }
     }
     &__categories{
         margin-left: 1rem;
     }
+
+    &__filter, &__sort{
+        display: flex;
+        flex-direction: row;
+    }
+    &__showFilters{
+        display: flex;
+        align-items: center;
+        margin-top: .5rem;
+    }
+    &__showFiltersText{
+        font-size: .9rem;
+        color: #555;
+    }
+    &__filterTag{
+        background-color: $primary-light;
+        padding: .2rem .4rem;
+        font-size: .9rem;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 10px;
+        color: $primary-dark;
+        margin: 0 .2rem;
+        &Container{
+            margin-left: .3rem;
+        }
+        i{
+            margin-left: .5rem;
+            font-size: .8rem;
+            cursor: pointer;
+        }
+    }
+}
+.filter{
+    &__textContainer{
+        margin-left: .5rem;
+        color: $dark-grey;
+        cursor: pointer;
+        user-select: none;
+    }
+    &__icon{
+        font-size: .8rem;
+    }
+    &__filtersContainer{
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0px 4px 19px -2px rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        padding: .5rem;
+        z-index: 500;
+        display: flex;
+        flex-direction: column;
+        label{
+            display: flex;
+            align-items: center;
+            padding: .3rem auto;
+            cursor: pointer;
+            user-select: none;
+        }
+        input{
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            margin-right: .4rem;
+            background: $primary-light;
+            transition: all .1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            &::after{
+                font-family: "Font Awesome 5 Free";
+                content: '\f00c';
+                font-weight: 900;
+                font-size: .9rem;
+                color: #fff;
+                display: none;
+            }
+            &:hover{
+                background-color: #9f4e5c49;
+            }
+            &:checked{
+                background-color: $primary-color;
+                &::after{
+                    display: initial;
+                }
+            }
+        }
+    }
+    &__categoriesTitle{
+        font-size: .9rem;
+        font-weight: 300;
+        color: #555;
+        border-top: 1px solid #eee;
+        margin-top: .5rem;
+        &:first-child{
+            margin-top: 0;
+            border: none;
+        }
+    }
+    &__btn{
+        background-color: $primary-color;
+        color: #fff;
+        width: fit-content;
+        line-height: 100%;
+        padding: .3rem 1rem;
+        border-radius: 5px;
+        margin-top: .5rem;
+        cursor: pointer;
+    }
+    
 }
 
 .footer{
@@ -443,8 +617,10 @@ section{
     display: flex;
     flex-direction: column;
     box-shadow: 0px 17px 29px 14px #0000000f;
-    // justify-content: space-between;
     align-items: center;
+    &--noMargin{
+        margin: 0;
+    }
     &__logo{
         font-weight: 500;
         text-decoration: none;
@@ -500,5 +676,12 @@ section{
     height: 0 !important;
     overflow: hidden;
 }
+.shake-animation{
+    animation: shake .1s ease-in-out .1s infinite alternate;
+}
+@keyframes shake {
+    from {left:-2px}
+    to {left:2px; transform-origin: center}
+  }
 
 @import '_queries';
